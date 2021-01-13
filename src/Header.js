@@ -14,6 +14,7 @@ function Header() {
         <div className="header-button flolowing">
           <p>Flowing</p>
         </div>
+
         <div className="header-search">
           <div className="header-searchContainer">
             <p>SearchIcons</p>
@@ -23,11 +24,13 @@ function Header() {
             </form>
           </div>
         </div>
-        <div className="header-menuItems"></div>
-        <p>Icons</p>
-        <p>Icons</p>
-        <p>Icons</p>
-        <p>Icons</p>
+
+        <div className="header-menuItems">
+          <p>Icons</p>
+          <p>Icons</p>
+          <p>Icons</p>
+          <p>Icons</p>
+        </div>
       </div>
     </div>
   );
