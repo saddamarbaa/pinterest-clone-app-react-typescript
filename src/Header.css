@@ -1,31 +1,3 @@
-.app-header {
-  flex: 1 1 auto;
-  height: 80px;
-  background-color: white;
-  justify-content: center;
-  padding: 12px 4px 4px 15px;
-  box-sizing: border-box;
-  align-items: center;
-}
-
-.header-wrapper {
-  display: flex;
-  align-items: center;
-  height: 56px;
-  background-color: white;
-  color: black;
-  margin: 0px;
-}
-
-.header-search {
-  display: flex;
-}
-
-.header-searchContainer {
-  display: flex;
-  align-items: center;
-}
-
-.header-menuItems {
-  display: flex;
+* {
+  margin: 0;
 }
