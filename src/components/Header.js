@@ -7,12 +7,19 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import TextsmsIcon from "@material-ui/icons/Textsms";
 import KeyboardArrowDownIcon from "@material-ui/icons/KeyboardArrowDown";
 import FaceIcon from "@material-ui/icons/Face";
+import db from "../firebase";
 
 const Header = (props) => {
   const [input, setinput] = useState("");
+
   const onSearchSubmit = (event) => {
     event.preventDefault();
     props.onSubmit(input);
+
+    // Add a new document in collection "terms"
+    db.collection("terms").add({
+      term: input,
+    });
   };
 
   return (

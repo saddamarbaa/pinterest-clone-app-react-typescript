@@ -2,11 +2,23 @@ import React from "react";
 import styled from "styled-components";
 import Pin from "./Pin";
 
-const Mainboard = () => {
+const Mainboard = ({ pins }) => {
+  // console.log(pins);
+  // pins.forEach((pin) => {
+  //   console.log(pin.urls);
+  // });
   return (
     <Wrapper>
       <Container>
-        <Pin />
+        ok
+        {pins.forEach((pin) => {
+          console.log(pin.urls);
+
+          <img
+            src="https://images.unsplash.com/photo-1555353540-64580b51c258?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwyMTE5NjF8MHwxfHNlYXJjaHw2fHxjYXJzfGVufDB8fHw&ixlib=rb-1.2.1&q=80&w=1080"
+            alt=""
+          />;
+        })}
       </Container>
     </Wrapper>
   );
