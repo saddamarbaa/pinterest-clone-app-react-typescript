@@ -15,7 +15,6 @@ const Header = (props) => {
   const onSearchSubmit = (event) => {
     event.preventDefault();
     props.onSubmit(input);
-
     // Add a new document in collection "terms"
     db.collection("terms").add({
       term: input,

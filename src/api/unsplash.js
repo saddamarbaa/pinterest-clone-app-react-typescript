@@ -8,6 +8,6 @@ export default axios.create({
   },
 });
 
+// Unsplash API KEY
 // Access Key   jwBcpjJEoz18O62MtRPk_BqyqQPNW2a1hVv8xO3FRYo
-
 // Secret key  cPAKJgYUN_rrG2o9bUVrTXf5SupZT9MAduEPazblaHY
