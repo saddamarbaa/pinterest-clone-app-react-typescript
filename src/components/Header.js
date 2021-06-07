@@ -9,9 +9,13 @@ import NotificationsIcon from "@material-ui/icons/Notifications";
 import FaceIcon from "@material-ui/icons/Face";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import db from "../firebase";
+import { actionTypes } from "../reducer";
+import { useStateValue } from "../StateProvider";
+import firebase from "firebase";
 
 const Header = (props) => {
 	const [input, setInput] = useState("");
+	const [{ user }, dispatch] = useStateValue();
 
 	const onSearchSubmit = (event) => {
 		event.preventDefault();
@@ -19,7 +23,19 @@ const Header = (props) => {
 		// Add a new document in collection "terms"
 		db.collection("terms").add({
 			term: input,
+			timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 		});
+
+		setInput("");
+	};
+
+	const signOut = () => {
+		dispatch({
+			type: actionTypes.REMOVE_USER,
+			user: user,
+		});
+
+		// localStorage.removeItem("token");
 	};
 
 	return (
@@ -30,10 +46,10 @@ const Header = (props) => {
 				</IconButton>
 			</LogoWrapper>
 			<HomePageButton>
-				<a href='/'>Home</a>
+				<a>Home </a>
 			</HomePageButton>
 			<FollowingButton>
-				<a href='/'>Flowing </a>
+				<a>Flowing </a>
 			</FollowingButton>
 			<SearchWrapper>
 				<SearchBarWrapper>
@@ -43,10 +59,12 @@ const Header = (props) => {
 					<form>
 						<input
 							type='text'
+							value={input}
 							onChange={(event) => setInput(event.target.value)}
 							placeholder='Search'
 						/>
 						<button
+							disabled={!input}
 							type='submit'
 							onClick={(event) => onSearchSubmit(event)}></button>
 					</form>
@@ -62,17 +80,19 @@ const Header = (props) => {
 				</IconButton>
 
 				<IconButton>
-					<Avatar />
+					<Avatar src={user?.photoURL} />
 				</IconButton>
 
-				<IconButton>
-					<ExitToAppIcon />
-				</IconButton>
+				<ShownFaceIcon>
+					<IconButton>
+						<ExitToAppIcon onClick={signOut} />
+					</IconButton>
+				</ShownFaceIcon>
 			</IconWrapper>
 
 			<HiddenFaceIcon>
 				<IconButton>
-					<ExitToAppIcon />
+					<ExitToAppIcon onClick={signOut} />
 				</IconButton>
 			</HiddenFaceIcon>
 		</Wrapper>
@@ -203,8 +223,18 @@ const IconWrapper = styled.div`
 	}
 `;
 
+const ShownFaceIcon = styled.div`
+	.MuiSvgIcon-root {
+		color: #e60023;
+		background-color: none;
+	}
+`;
+
 const HiddenFaceIcon = styled.div`
 	display: none;
+	.MuiSvgIcon-root {
+		color: #e60023;
+	}
 
 	@media (max-width: 568px) {
 		display: flex;

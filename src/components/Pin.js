@@ -5,25 +5,33 @@ import styled from "styled-components";
 
 const Pin = ({ urls }) => {
 	return (
-		<Container>
-			<img src={urls?.regular} alt='' />
-		</Container>
+		<Wrapper>
+			<Container>
+				<img src={urls?.regular} alt='pins' />
+			</Container>
+		</Wrapper>
 	);
 };
 
 export default Pin;
 
+const Wrapper = styled.div`
+	display: inline-flex;
+	padding: 10px;
+`;
+
 const Container = styled.div`
 	cursor: pointer;
-	min-width: 260px;
+	width: 236px;
+	box-sizing: border-box;
+	cursor: pointer;
 
 	img {
+		display: flex;
 		height: 100%;
 		width: 100%;
 		border-radius: 16px;
 		cursor: zoom-in;
 		object-fit: cover;
-		max-height: 300px;
-		min-height: 150px;
 	}
 `;

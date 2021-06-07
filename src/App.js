@@ -6,8 +6,13 @@ import Mainboard from "./components/Mainboard";
 import unsplash from "./api/unsplash";
 import db from "./firebase";
 import styled from "styled-components";
+import Login from "./components/Login";
+import { useStateValue } from "./StateProvider";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// const BearerToken = localStorage.getItem("token");
 
 const App = () => {
+	const [{ user }, dispatch] = useStateValue();
 	const [pins, setNewPins] = useState([]);
 
 	// fetches data(get Image from unsplash)
@@ -43,6 +48,7 @@ const App = () => {
 
 		unsubscribe = db
 			.collection("terms")
+			.orderBy("timestamp", "asc")
 			.limit(10)
 			.onSnapshot((snapshot) => {
 				let snapshotData = snapshot.docs;
@@ -70,18 +76,21 @@ const App = () => {
 
 	return (
 		<AppWrapper>
-			<Header onSubmit={onSearchSubmit} />
-			{/* <Mainboard pins={pins} /> */}
+			{!user ? (
+				<Login />
+			) : (
+				<>
+					<Header onSubmit={onSearchSubmit} />
+					<Mainboard pins={pins} />
+				</>
+			)}
 		</AppWrapper>
 	);
 };
 
 const AppWrapper = styled.div`
 	min-height: 100vh;
-	display: grid;
-  width:100vw;
+	width: 100%;
 `;
-
-
 
 export default App;
