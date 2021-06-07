@@ -1,97 +1,87 @@
+/** @format */
+
 import React, { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Mainboard from "./components/Mainboard";
 import unsplash from "./api/unsplash";
 import db from "./firebase";
+import styled from "styled-components";
 
 const App = () => {
-  // Create state variables
-  const [pins, setNewPins] = useState([]);
+	const [pins, setNewPins] = useState([]);
 
-  // fetches data(get Image from unsplash)
-  const makeApiCall = (term) => {
-    return unsplash.get("https://api.unsplash.com/search/photos", {
-      params: {
-        query: term,
-      },
-    });
-  };
+	// fetches data(get Image from unsplash)
+	const makeApiCall = (term) => {
+		return unsplash.get("https://api.unsplash.com/search/photos", {
+			params: {
+				query: term,
+			},
+		});
+	};
 
-  // fetches data
-  const onSearchSubmit = (term) => {
-    makeApiCall(term)
-      .then((respone) => {
-        const searchResult = respone.data.results;
-        const newPins = [...searchResult, ...pins];
+	// fetches data
+	const onSearchSubmit = (term) => {
+		makeApiCall(term)
+			.then((respone) => {
+				const searchResult = respone.data.results;
+				const newPins = [...searchResult, ...pins];
 
-        newPins.sort((a, b) => {
-          return 0.5 - Math.random();
-        });
-        setNewPins(newPins);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+				newPins.sort((a, b) => {
+					return 0.5 - Math.random();
+				});
+				setNewPins(newPins);
+			})
+			.catch((error) => {
+				// console.log(error);
+			});
+	};
 
-  // const getNewPins = () => {
-  //   let promises = [];
-  //   let pinData = [];
+	useEffect(() => {
+		let unsubscribe;
+		let promises = [];
+		let pinData = [];
 
-  //   db.collection("terms").onSnapshot((snapshot) => {
-  //     let snapshotData = snapshot.docs;
+		unsubscribe = db
+			.collection("terms")
+			.limit(10)
+			.onSnapshot((snapshot) => {
+				let snapshotData = snapshot.docs;
+				snapshotData.map((doc) => {
+					const existingTermInFirebase = doc.data()?.term;
+					promises.push(
+						makeApiCall(existingTermInFirebase).then((response) => {
+							const searchResult = response.data.results;
+							pinData = [...searchResult, ...pinData];
 
-  //     if (snapshot.leght >= 10) {
-  //       snapshotData = snapshotData.slice(
-  //         snapshotData.length - 5,
-  //         snapshotData.length
-  //       );
-  //     }
+							pinData.sort((a, b) => {
+								return 0.5 - Math.random();
+							});
 
-  //     snapshotData.map((doc) => {
-  //       promises.push(makeApiCall(doc.data).term).then((respone) => {
-  //         console.log(respone);
-  //       });
-  //     });
-  //   });
-  // };
+							setNewPins(pinData);
+						}),
+					);
+				});
+			});
 
-  const getNewPins = () => {
-    let promises = [];
-    let pinData = [];
-    let pins = ["coding", "computer", "pairs", "bali", "familt"];
+		return () => {
+			unsubscribe();
+		};
+	}, []);
 
-    pins.forEach((pinTerm) => {
-      promises.push(
-        makeApiCall(pinTerm).then((respone) => {
-          const searchResult = respone.data.results;
-          pinData = [...searchResult, ...pinData];
-
-          pinData.sort((a, b) => {
-            return 0.5 - Math.random();
-          });
-
-          // console.log("pinData is ", pinData);
-          setNewPins(pinData);
-        })
-      );
-    });
-
-    Promise.all(promises).then(() => {
-      setNewPins(pinData);
-    });
-  };
-
-  useEffect(() => {
-    getNewPins();
-  }, []);
-
-  return (
-    <div className="app">
-      <Header onSubmit={onSearchSubmit} />
-      <Mainboard pins={pins} />
-    </div>
-  );
+	return (
+		<AppWrapper>
+			<Header onSubmit={onSearchSubmit} />
+			{/* <Mainboard pins={pins} /> */}
+		</AppWrapper>
+	);
 };
+
+const AppWrapper = styled.div`
+	min-height: 100vh;
+	display: grid;
+  width:100vw;
+`;
+
+
 
 export default App;
