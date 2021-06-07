@@ -11,7 +11,6 @@ const Mainboard = ({ pins }) => {
 			<Container>
 				{pins.map((pin) => {
 					let imageUrls = pin.urls;
-
 					// return the result to pin component
 					return <Pin urls={imageUrls} key={uuidv4()} />;
 				})}
@@ -23,28 +22,21 @@ const Mainboard = ({ pins }) => {
 export default Mainboard;
 
 const Wrapper = styled.div`
+	padding: 20px;
 	display: grid;
-	/* place-items: center; */
-	justify-content: center;
-	/* background-color: white;
-	display: flex;
-	justify-content: center;
-	height: 100%;
-	width: 100%; */
-
-	border: 1px solid yellow;
+	place-items: center;
+	width: 100%;
 `;
 
 const Container = styled.div`
-	/* max-width: 1260px;
-	height: 100%;
-	column-count: 5;
-	column-gap: 10px;
+	width: 93%;
+	display: grid;
+	place-items: center;
+	justify-content: space-between;
+	grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+	grid-gap: 8px;
 
-	margin: 0 auto;
-	background-color: white; */
-
-	/* img {
-		margin: 2px;
-	} */
+	@media (max-width: 360px) {
+		grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	}
 `;
