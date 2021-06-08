@@ -1,3 +1,147 @@
+
+## Pinterest Clone
+
+ Building Pinterest Clone App with React Js, Styled Component, React Context API, Material-UI, 
+ Google Authentication, Firebase Hosting, Firebase Realtime Database, (a mobile-friendly) 
+ 
+ 
+ ## Table of contents
+* [Author](#Author)
+* [Demo](#Demo)
+* [Tech Stack](#Technologies)
+* [Optimizations](#Optimizations)
+* [Contributing](#Contributing)
+* [Features](#features)
+* [Status](#status)
+* [Inspiration](#inspiration)
+* [Contact](#contact)
+* [Support](#Support)
+* [Screenshots](#Screenshots)
+* [Support](#Support)
+* [Feedback](#Feedback)
+
+
+ 
+ ### Author
+
+- [@Saddam Arbaa](https://github.com/saddamarbaa)
+
+
+### Contributing
+
+Contributions are always welcome!
+
+
+
+###  Demo
+
+
+### <a href="https://pinterest-clone-df800.web.app">Live Demo </a>
+### <a href="https://www.loom.com/share/59bd9d98bd2645c89f12ffcff122b98f"> Live Video Demo </a>
+
+
+### Technologies
+
+**Client:** React, React Context API, Material-UI, Styled Component
+
+**Server:** Firebase Realtime Database, Firebase Hosting, Firebase Google Authentication
+
+
+### Features
+
+- Search functionality
+- Google Authentication
+
+
+## Optimizations
+- function components
+- React hooks
+- React useEffect cleanup
+
+
+
+### Support
+
+For support, email saddamarbaas@gmail.com.
+
+
+### Feedback
+
+If you have any feedback, please reach out to me at saddamarbaas@gmail.com
+
+  
+Twitter
+https://twitter.com/ArbaaSaddam/
+
+Linkedin.
+https://www.linkedin.com/in/saddamarbaa/
+
+Github
+https://github.com/saddamarbaa
+
+Instagram
+https://www.instagram.com/saddam.dev/
+
+Facebook
+https://www.facebook.com/saddam.arbaa
+
+
+  
+### Screenshots
+
+### responsive on large screens
+
+![image](https://user-images.githubusercontent.com/51326421/121102612-36e29c80-c828-11eb-9812-63401a44d81a.png)
+
+
+### responsive on small screens
+
+![image](https://user-images.githubusercontent.com/51326421/121106925-30a4ee00-c831-11eb-9849-91b5462d6e82.png)
+
+
+
+###  Sign in page
+
+![image](https://user-images.githubusercontent.com/51326421/121102842-ca1bd200-c828-11eb-85b3-4b55885be8fc.png)
+
+
+  
+  
+### Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/saddamarbaa/pinterest-clone.git
+```
+
+Go to the project directory
+
+```bash
+  cd pinterest-clone
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm  start
+
+
+```
+
+### Status
+Project is: _in progress_
+I'm working on it in my free time
+
+### Inspiration
+Build By Saddam Arbaa Project inspired by [Pinterest] https://id.pinterest.com/
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
