@@ -1,8 +1,9 @@
 
 ## Pinterest Clone
 
- Building Pinterest Clone App with React Js, Styled Component, React Context API, Material-UI, 
- Google Authentication, Firebase Hosting, Firebase Realtime Database, (a mobile-friendly) 
+ Building Pinterest Clone App with React Js, Styled Component, 
+ React Context API, Material-UI, Google Authentication, Firebase Hosting, 
+ Firebase Realtime Database, (a mobile-friendly) 
  
  
  ## Table of contents
@@ -14,7 +15,6 @@
 * [Features](#features)
 * [Status](#status)
 * [Inspiration](#inspiration)
-* [Contact](#contact)
 * [Support](#Support)
 * [Screenshots](#Screenshots)
 * [Support](#Support)
